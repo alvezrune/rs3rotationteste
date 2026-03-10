@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import lodash from 'lodash';
 import AbilitySlot from './AbilitySlot';
 import GCDBar from './GCDBar';
 import PhaseBadge from '../components/PhaseBadge';
@@ -151,47 +152,60 @@ export default function Overlay() {
     // ========== ICON RESOLVER ==========
     const resolveIcon = useCallback((abilityId) => {
         if (!abilityId) return;
+
+        // 1. Check if we need to fetch, avoiding setState if it's already there
+        let needsFetch = false;
         setIconCache(prev => {
             if (prev[abilityId] !== undefined) return prev; // já em cache
-            return prev; // não muda state aqui (evita setState dentro de setState logo abaixo)
+            if (iconLoadingRef.current.has(abilityId)) return prev; // sendo carregado agora
+
+            needsFetch = true;
+            iconLoadingRef.current.add(abilityId);
+            return { ...prev, [abilityId]: null }; // Seta como nulo no react dom (mostrando bolinha de loading)
         });
 
-        setIconCache(prev => {
-            if (prev[abilityId] !== undefined) return prev;
-            if (iconLoadingRef.current.has(abilityId)) return prev; // já carregando
-
-            iconLoadingRef.current.add(abilityId);
+        // 2. ONLY do the fetch if the sync evaluation says we should. (Side Effects fora do State Updater!)
+        if (needsFetch) {
             api.getIconPath(abilityId).then(url => {
                 iconLoadingRef.current.delete(abilityId);
                 setIconCache(c => {
-                    if (c[abilityId] === url) return c; // sem mudança real
+                    if (c[abilityId] === url) return c; // Evita loop caso não mude
                     return { ...c, [abilityId]: url };
                 });
+            }).catch(() => {
+                iconLoadingRef.current.delete(abilityId);
             });
-            return { ...prev, [abilityId]: null }; // placeholder de tela preta aguardando a img
-        });
+        }
     }, []);
 
     const preloadIcons = useCallback((steps) => {
         if (!steps) return;
         const allSkills = steps.flatMap(s => s?.skills || []);
 
+        // 1. Identify which ones need fetching entirely synchronously 
+        const fetchIds = [];
+
         setIconCache(prev => {
-            const newIds = allSkills.map(s => s.id).filter(id => id && prev[id] === undefined);
+            const newIds = allSkills.map(s => s.id).filter(id => id && prev[id] === undefined && !iconLoadingRef.current.has(id));
             if (newIds.length === 0) return prev;
 
             const next = { ...prev };
             newIds.forEach(id => {
-                next[id] = null; // placeholder local
-                if (!iconLoadingRef.current.has(id)) {
-                    iconLoadingRef.current.add(id);
-                    api.getIconPath(id).then(url => {
-                        iconLoadingRef.current.delete(id);
-                        setIconCache(c => c[id] === url ? c : { ...c, [id]: url });
-                    });
-                }
+                next[id] = null; // Seta slot null pro componente vazio sumonar o Placeholder
+                iconLoadingRef.current.add(id);
+                fetchIds.push(id);
             });
-            return next;
+            return next; // Roda setState apenas 1 vez (não em O(n) looping)
+        });
+
+        // 2. Perform IO fetches Outside setState purely based on the batch collected
+        fetchIds.forEach(id => {
+            api.getIconPath(id).then(url => {
+                iconLoadingRef.current.delete(id);
+                setIconCache(c => c[id] === url ? c : { ...c, [id]: url });
+            }).catch(() => {
+                iconLoadingRef.current.delete(id);
+            });
         });
     }, []);
 
@@ -315,76 +329,83 @@ export default function Overlay() {
         api.registerRotationKeys(keyMap);
     }
 
-    function handleKeyPressInternal(key) {
-        const engine = engineRef.current;
-        const gcd = gcdRef.current;
-        if (!engine || !gcd) return;
+    const handleKeyPressInternal = useCallback(lodash.throttle((key) => {
+        try {
+            const engine = engineRef.current;
+            const gcd = gcdRef.current;
+            if (!engine || !gcd) return;
 
-        const step = engine.getCurrentStep();
-        if (!step) return;
+            const step = engine.getCurrentStep();
+            if (!step) return;
 
-        // Check if GCD is ready
-        if (!gcd.isReady()) {
-            preInputRef.current = key;
-            return;
-        }
-
-        // Check if key matches expected
-        const expectedSkills = step.skills || [];
-        const abs = abilitiesRef.current;
-        let matched = false;
-
-        for (const skill of expectedSkills) {
-            const ab = abs[skill.id];
-            if (!ab?.key?.base) continue;
-            const mods = (ab.key.modifiers || []).map(m => m.toLowerCase());
-            const parts = [];
-            if (mods.includes('ctrl') || mods.includes('control')) parts.push('ctrl');
-            if (mods.includes('shift')) parts.push('shift');
-            if (mods.includes('alt')) parts.push('alt');
-            if (mods.includes('meta')) parts.push('meta');
-            parts.push(ab.key.base.toLowerCase());
-            if (parts.join('+') === key) {
-                matched = true;
-                break;
-            }
-        }
-
-        if (matched) {
-            // Clear passive timer
-            if (passiveTimerRef.current) {
-                clearTimeout(passiveTimerRef.current);
-                passiveTimerRef.current = null;
-            }
-            // Correct key — advance
-            gcd.reset();
-            gcd.start();
-            setGcdState('running');
-            engine.advance();
-            updateViewRef.current?.();
-        } else {
-            // Wrong key
-            const s = settingsRef.current;
-            const flashEnabled = s?.overlay?.flashOnError === true;
-            if (flashEnabled) {
-                setGcdState('error-key');
+            // Check if GCD is ready
+            if (!gcd.isReady()) {
+                preInputRef.current = key;
+                return;
             }
 
-            const correctSkill = expectedSkills[0];
-            const ab = abs[correctSkill?.id];
-            const correctKey = ab?.key?.base ? formatKeyDisplay(ab.key) : '?';
-            setErrorMsg(`✗ ${key.toUpperCase()} — Aperte ${correctKey}`);
+            // Check if key matches expected
+            const expectedSkills = step.skills || [];
+            const abs = abilitiesRef.current;
+            let matched = false;
 
-            if (errorTimeoutRef.current) clearTimeout(errorTimeoutRef.current);
-            errorTimeoutRef.current = setTimeout(() => {
-                setErrorMsg(null);
-                if (flashEnabled) {
-                    setGcdState(gcdRef.current?.isReady() ? 'idle' : 'running');
+            for (const skill of expectedSkills) {
+                const ab = abs[skill.id];
+                if (!ab?.key?.base) continue;
+                const mods = (ab.key.modifiers || []).map(m => m.toLowerCase());
+                const parts = [];
+                if (mods.includes('ctrl') || mods.includes('control')) parts.push('ctrl');
+                if (mods.includes('shift')) parts.push('shift');
+                if (mods.includes('alt')) parts.push('alt');
+                if (mods.includes('meta')) parts.push('meta');
+                parts.push(ab.key.base.toLowerCase());
+                if (parts.join('+') === key) {
+                    matched = true;
+                    break;
                 }
-            }, 2000);
+            }
+
+            if (matched) {
+                // Clear passive timer
+                if (passiveTimerRef.current) {
+                    clearTimeout(passiveTimerRef.current);
+                    passiveTimerRef.current = null;
+                }
+                // Correct key — advance
+                gcd.reset();
+                gcd.start();
+                setGcdState('running');
+                engine.advance();
+                updateViewRef.current?.();
+            } else {
+                // Wrong key
+                const s = settingsRef.current;
+                const flashEnabled = s?.overlay?.flashOnError === true;
+                if (flashEnabled) {
+                    setGcdState('error-key');
+                }
+
+                const correctSkill = expectedSkills[0];
+                const ab = abs[correctSkill?.id];
+                const correctKey = ab?.key?.base ? formatKeyDisplay(ab.key) : '?';
+                setErrorMsg(`✗ ${key.toUpperCase()} — Aperte ${correctKey}`);
+
+                if (errorTimeoutRef.current) clearTimeout(errorTimeoutRef.current);
+                errorTimeoutRef.current = setTimeout(() => {
+                    setErrorMsg(null);
+                    if (flashEnabled) {
+                        setGcdState(gcdRef.current?.isReady() ? 'idle' : 'running');
+                    }
+                }, 1000); // reduced timeout 
+            }
+        } catch (err) {
+            console.error('[React] Error in key handler:', err);
         }
-    }
-    handleKeyPressRef.current = handleKeyPressInternal;
+    }, 150, { trailing: false }), []); // throttle key presses heavily to avoid flicker/crash loops
+
+    useEffect(() => {
+        handleKeyPressRef.current = handleKeyPressInternal;
+    }, [handleKeyPressInternal]);
 
     // ========== WRAPPER FUNCTIONS (for JSX event handlers) ==========
 
