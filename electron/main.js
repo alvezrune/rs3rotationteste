@@ -242,6 +242,8 @@ function createOverlayWindow() {
         height: settings.overlay.height || 115,
         x: settings.overlay.x ?? Math.floor(screenW / 2 - 320),
         y: settings.overlay.y ?? 50,
+        show: false,
+        backgroundColor: '#00000000',
         frame: false,
         transparent: true,
         alwaysOnTop: true,
@@ -252,8 +254,15 @@ function createOverlayWindow() {
             contextIsolation: true,
             nodeIntegration: false,
             webSecurity: false,
+            backgroundThrottling: false,
         }
     });
+
+    overlayWindow.once('ready-to-show', () => {
+        overlayWindow.show();
+    });
+
+    overlayWindow.setIgnoreMouseEvents(true, { forward: true });
 
     overlayWindow.loadURL(getRendererURL('overlay'));
     overlayWindow.setAlwaysOnTop(true, 'screen-saver');
@@ -329,6 +338,7 @@ function createSettingsWindow() {
 // ============ CRASH HANDLERS ============
 process.on('uncaughtException', (err) => {
     console.error('[CRASH] Uncaught Exception:', err);
+    // NÃO chamar app.quit() aqui — apenas logar
 });
 process.on('unhandledRejection', (reason) => {
     console.error('[CRASH] Unhandled Rejection:', reason);
@@ -338,6 +348,14 @@ process.on('unhandledRejection', (reason) => {
 app.whenReady().then(() => {
     createOverlayWindow();
     setupUiohook();
+});
+
+app.on('will-quit', () => {
+    try {
+        keybindManager.unregisterAll();
+    } catch (e) {
+        console.error('Error unregistering keys on quit:', e);
+    }
 });
 
 app.on('window-all-closed', () => {
@@ -357,55 +375,71 @@ function setupUiohook() {
         else if (keyName === 'Space') keycodeToChar[code] = 'space';
     }
 
-    uIOhook.on('keydown', (e) => {
-        if (!keybindManager.isTracking) return;
-        const baseKey = keycodeToChar[e.keycode];
-        if (!baseKey) return;
+    try {
+        uIOhook.on('keydown', (e) => {
+            if (!keybindManager.isTracking) return;
+            const baseKey = keycodeToChar[e.keycode];
+            if (!baseKey) return;
 
-        const res = [];
-        if (e.ctrlKey) res.push('ctrl');
-        if (e.shiftKey) res.push('shift');
-        if (e.altKey) res.push('alt');
-        if (e.metaKey) res.push('meta');
-        res.push(baseKey);
-        const comboStr = res.join('+');
+            const res = [];
+            if (e.ctrlKey) res.push('ctrl');
+            if (e.shiftKey) res.push('shift');
+            if (e.altKey) res.push('alt');
+            if (e.metaKey) res.push('meta');
+            res.push(baseKey);
+            const comboStr = res.join('+');
 
-        if (keybindManager.isRegistered(comboStr)) {
-            if (overlayWindow && !overlayWindow.isDestroyed()) {
-                overlayWindow.webContents.send('key-pressed', { key: comboStr });
+            if (keybindManager.isRegistered(comboStr)) {
+                if (overlayWindow && !overlayWindow.isDestroyed()) {
+                    overlayWindow.webContents.send('key-pressed', { key: comboStr });
+                }
             }
-        }
-    });
+        });
 
-    uIOhook.start();
+        uIOhook.start();
+    } catch (err) {
+        console.error('[CRASH] Error starting uIOhook:', err);
+    }
 }
 
 // ============ IPC HANDLERS ============
 
 // -- Janelas --
+ipcMain.removeAllListeners('close-overlay');
 ipcMain.on('close-overlay', () => {
     if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.close();
     app.quit();
 });
+ipcMain.removeAllListeners('minimize-overlay');
 ipcMain.on('minimize-overlay', () => {
     if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.minimize();
 });
+ipcMain.removeAllListeners('open-settings');
 ipcMain.on('open-settings', () => createSettingsWindow());
+ipcMain.removeAllListeners('close-settings');
 ipcMain.on('close-settings', () => {
     if (settingsWindow && !settingsWindow.isDestroyed()) settingsWindow.close();
 });
+ipcMain.removeAllListeners('set-opacity');
 ipcMain.on('set-opacity', (_, val) => {
     if (overlayWindow && !overlayWindow.isDestroyed()) {
         overlayWindow.setOpacity(val);
     }
 });
+ipcMain.removeAllListeners('set-window-size');
 ipcMain.on('set-window-size', (event, width, height) => {
     const win = BrowserWindow.fromWebContents(event.sender);
     if (win && !win.isDestroyed()) {
         win.setSize(Math.round(width), Math.round(height));
     }
 });
-
+ipcMain.removeAllListeners('set-ignore-mouse-events');
+ipcMain.on('set-ignore-mouse-events', (event, ignore) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win && !win.isDestroyed()) {
+        win.setIgnoreMouseEvents(ignore, { forward: true });
+    }
+});
 
 // -- Dados --
 ipcMain.handle('load-abilities', () => loadAbilities());
@@ -489,6 +523,7 @@ ipcMain.handle('remove-icon', (_, abilityId) => {
     return false;
 });
 
+ipcMain.removeAllListeners('open-icons-folder');
 ipcMain.on('open-icons-folder', () => {
     shell.openPath(ICONS_DIR);
 });
@@ -519,12 +554,23 @@ ipcMain.handle('get-all-icon-status', () => {
 });
 
 // -- Keybinds --
+ipcMain.removeAllListeners('register-rotation-keys');
 ipcMain.on('register-rotation-keys', (_, keyMap) => {
-    keybindManager.registerRotationKeys(keyMap);
+    try {
+        keybindManager.unregisterAll();
+        keybindManager.registerRotationKeys(keyMap);
+    } catch (e) {
+        console.error('Error registering rotation keys:', e);
+    }
 });
 
+ipcMain.removeAllListeners('unregister-all-keys');
 ipcMain.on('unregister-all-keys', () => {
-    keybindManager.unregisterAll();
+    try {
+        keybindManager.unregisterAll();
+    } catch (e) {
+        console.error('Error unregistering all keys:', e);
+    }
 });
 
 ipcMain.handle('register-keybind', (_, combo, abilityId) => {

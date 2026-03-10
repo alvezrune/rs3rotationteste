@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     closeSettings: () => ipcRenderer.send('close-settings'),
     setOpacity: (val) => ipcRenderer.send('set-opacity', val),
     setWindowSize: (w, h) => ipcRenderer.send('set-window-size', w, h),
+    setIgnoreMouseEvents: (ignore) => ipcRenderer.send('set-ignore-mouse-events', ignore),
 
     // Dados
     loadAbilities: () => ipcRenderer.invoke('load-abilities'),
