@@ -7,7 +7,8 @@
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "build": "vite build",
     "start": "electron .",
-    "package": "vite build && electron-packager . \"RS3 Rotation\" --platform=win32 --arch=x64 --icon=assets/icon.png --out=dist --overwrite --ignore=\"src|node_modules/.vite\""
+    "dist": "vite build && electron-builder",
+    "release": "vite build && electron-builder --publish always"
   },
   "keywords": [
     "runescape",
@@ -24,7 +25,8 @@
     "electron": "^28.3.3",
     "electron-packager": "^17.1.2",
     "vite": "^5.4.0",
-    "wait-on": "^7.2.0"
+    "wait-on": "^7.2.0",
+    "electron-builder": "^24.13.3"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -34,5 +36,29 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "uiohook-napi": "^1.5.4"
+  },
+  "build": {
+    "appId": "com.rs3rotation.overlay",
+    "productName": "RS3 Rotation",
+    "directories": {
+      "output": "dist-release"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "assets/icon.ico"
+    },
+    "files": [
+      "dist-vite/**/*",
+      "electron/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      "assets/**/*",
+      "data/**/*"
+    ],
+    "publish": {
+      "provider": "github"
+    }
   }
 }
