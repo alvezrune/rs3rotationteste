@@ -39,6 +39,13 @@ export default function Overlay() {
     const errorTimeoutRef = useRef(null);
     const passiveTimerRef = useRef(null);
 
+    // Novas Refs de Ciclo de Vida do React
+    const mouseDepthRef = useRef(0);
+    const iconLoadingRef = useRef(new Set());
+    const handleKeyPressRef = useRef(null);
+    const updateViewRef = useRef(null);
+    const checkAutoAdvanceRef = useRef(null);
+
     // Latest-value refs for use inside callbacks (avoids stale closures)
     const abilitiesRef = useRef(abilities);
     const settingsRef = useRef(settings);
@@ -72,7 +79,7 @@ export default function Overlay() {
             if (preInputRef.current) {
                 const savedKey = preInputRef.current;
                 preInputRef.current = null;
-                handleKeyPressInternal(savedKey);
+                handleKeyPressRef.current?.(savedKey);
             }
         });
 
@@ -136,30 +143,72 @@ export default function Overlay() {
     useEffect(() => {
         const cleanup = api.onKeyPressed(({ key }) => {
             if (completedRef.current) return;
-            handleKeyPressInternal(key);
+            handleKeyPressRef.current?.(key);
         });
         return cleanup;
     }, []);
 
     // ========== ICON RESOLVER ==========
-    const resolveIcon = useCallback(async (abilityId) => {
-        if (!abilityId) return null;
-        // Check current cache via ref to avoid stale closure
+    const resolveIcon = useCallback((abilityId) => {
+        if (!abilityId) return;
         setIconCache(prev => {
-            if (prev[abilityId] !== undefined) return prev; // Already cached
-            // Trigger async load
+            if (prev[abilityId] !== undefined) return prev; // já em cache
+            return prev; // não muda state aqui (evita setState dentro de setState logo abaixo)
+        });
+
+        setIconCache(prev => {
+            if (prev[abilityId] !== undefined) return prev;
+            if (iconLoadingRef.current.has(abilityId)) return prev; // já carregando
+
+            iconLoadingRef.current.add(abilityId);
             api.getIconPath(abilityId).then(url => {
-                setIconCache(c => ({ ...c, [abilityId]: url }));
+                iconLoadingRef.current.delete(abilityId);
+                setIconCache(c => {
+                    if (c[abilityId] === url) return c; // sem mudança real
+                    return { ...c, [abilityId]: url };
+                });
             });
-            return { ...prev, [abilityId]: null }; // Mark as loading
+            return { ...prev, [abilityId]: null }; // placeholder de tela preta aguardando a img
         });
     }, []);
 
     const preloadIcons = useCallback((steps) => {
         if (!steps) return;
         const allSkills = steps.flatMap(s => s?.skills || []);
-        allSkills.forEach(skill => resolveIcon(skill.id));
-    }, [resolveIcon]);
+
+        setIconCache(prev => {
+            const newIds = allSkills.map(s => s.id).filter(id => id && prev[id] === undefined);
+            if (newIds.length === 0) return prev;
+
+            const next = { ...prev };
+            newIds.forEach(id => {
+                next[id] = null; // placeholder local
+                if (!iconLoadingRef.current.has(id)) {
+                    iconLoadingRef.current.add(id);
+                    api.getIconPath(id).then(url => {
+                        iconLoadingRef.current.delete(id);
+                        setIconCache(c => c[id] === url ? c : { ...c, [id]: url });
+                    });
+                }
+            });
+            return next;
+        });
+    }, []);
+
+    // ========== LÓGICA DO MOUSE (Hover Depth Fix) ==========
+    const handleMouseEnter = useCallback(() => {
+        mouseDepthRef.current += 1;
+        if (mouseDepthRef.current === 1) {
+            api?.setIgnoreMouseEvents?.(false);
+        }
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        mouseDepthRef.current = Math.max(0, mouseDepthRef.current - 1);
+        if (mouseDepthRef.current === 0) {
+            api?.setIgnoreMouseEvents?.(true);
+        }
+    }, []);
 
     // ========== INTERNAL FUNCTIONS (use refs, no stale closures) ==========
 
@@ -183,8 +232,9 @@ export default function Overlay() {
         preloadIcons(allSteps);
 
         // Check auto-advance for passive skills
-        checkAutoAdvance(engine);
+        checkAutoAdvanceRef.current?.(engine);
     }
+    updateViewRef.current = updateViewFromEngine;
 
     function checkAutoAdvance(engine) {
         if (passiveTimerRef.current) {
@@ -211,10 +261,11 @@ export default function Overlay() {
             }
             passiveTimerRef.current = setTimeout(() => {
                 engine.advance();
-                updateViewFromEngine();
+                updateViewRef.current?.();
             }, 1800);
         }
     }
+    checkAutoAdvanceRef.current = checkAutoAdvance;
 
     function selectRotationInternal(rotation, abilitiesMap, settingsObj) {
         const engine = engineRef.current;
@@ -229,8 +280,8 @@ export default function Overlay() {
         setShowDropdown(false);
         setDropdownSearch('');
 
-        // Engine callbacks
-        engine.onAdvance(() => updateViewFromEngine());
+        // Engine callbacks com Ref (Mata Stale Closures totalmente)
+        engine.onAdvance(() => updateViewRef.current?.());
         engine.onPhaseComplete(() => { });
         engine.onRotationComplete(() => {
             setCompleted(true);
@@ -310,7 +361,7 @@ export default function Overlay() {
             gcd.start();
             setGcdState('running');
             engine.advance();
-            updateViewFromEngine();
+            updateViewRef.current?.();
         } else {
             // Wrong key
             const s = settingsRef.current;
@@ -333,6 +384,7 @@ export default function Overlay() {
             }, 2000);
         }
     }
+    handleKeyPressRef.current = handleKeyPressInternal;
 
     // ========== WRAPPER FUNCTIONS (for JSX event handlers) ==========
 
@@ -374,7 +426,7 @@ export default function Overlay() {
         }
         setGcdState('idle');
         setGcdProgress(0);
-        updateViewFromEngine();
+        updateViewRef.current?.();
     }, []);
 
     // Format key for display
@@ -416,8 +468,8 @@ export default function Overlay() {
             {/* TITLEBAR */}
             <div
                 className="overlay-titlebar"
-                onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
-                onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 <div className="titlebar-left">
                     <span className="titlebar-icon">⚔</span>
@@ -452,8 +504,8 @@ export default function Overlay() {
                 <div
                     className="rotation-dropdown-overlay"
                     onClick={() => setShowDropdown(false)}
-                    onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
-                    onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                 >
                     <div className="rotation-dropdown" onClick={e => e.stopPropagation()}>
                         <div className="dropdown-header">
@@ -505,8 +557,8 @@ export default function Overlay() {
                 {!activeRotation ? (
                     <div
                         className="overlay-empty"
-                        onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
-                        onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                     >
                         <div className="empty-icon">⚔️</div>
                         <div className="empty-text">SELECIONE UM BOSS PARA INICIAR</div>
@@ -517,8 +569,8 @@ export default function Overlay() {
                 ) : completed ? (
                     <div
                         className="overlay-completed"
-                        onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
-                        onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                     >
                         <div className="completed-icon">✅</div>
                         <div className="completed-text">Completo!</div>
@@ -526,7 +578,11 @@ export default function Overlay() {
                         <button className="completed-btn" onClick={resetAll}>↺ Reiniciar</button>
                     </div>
                 ) : (
-                    <div className="overlay-active">
+                    <div
+                        className="overlay-active"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
                         {/* Skill Track */}
                         <div className="skills-track">
                             {/* Phase Badge */}
