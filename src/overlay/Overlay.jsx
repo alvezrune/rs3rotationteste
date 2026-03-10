@@ -110,6 +110,12 @@ export default function Overlay() {
             }
         };
         load();
+
+        // Inicializa com mouse invisível (clicks passam reto pelo overlay)
+        if (api && api.setIgnoreMouseEvents) {
+            api.setIgnoreMouseEvents(true);
+        }
+
         return () => { cancelled = true; };
     }, []);
 
@@ -408,7 +414,11 @@ export default function Overlay() {
     return (
         <div className="overlay-container">
             {/* TITLEBAR */}
-            <div className="overlay-titlebar">
+            <div
+                className="overlay-titlebar"
+                onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
+                onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+            >
                 <div className="titlebar-left">
                     <span className="titlebar-icon">⚔</span>
                     <span className="titlebar-brand">RS3 ROTATION</span>
@@ -439,7 +449,12 @@ export default function Overlay() {
 
             {/* DROPDOWN DE ROTAÇÕES */}
             {showDropdown && (
-                <div className="rotation-dropdown-overlay" onClick={() => setShowDropdown(false)}>
+                <div
+                    className="rotation-dropdown-overlay"
+                    onClick={() => setShowDropdown(false)}
+                    onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
+                    onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                >
                     <div className="rotation-dropdown" onClick={e => e.stopPropagation()}>
                         <div className="dropdown-header">
                             <input
@@ -488,7 +503,11 @@ export default function Overlay() {
             {/* CONTEÚDO PRINCIPAL */}
             <div className="overlay-content">
                 {!activeRotation ? (
-                    <div className="overlay-empty">
+                    <div
+                        className="overlay-empty"
+                        onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
+                        onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                    >
                         <div className="empty-icon">⚔️</div>
                         <div className="empty-text">SELECIONE UM BOSS PARA INICIAR</div>
                         <button className="empty-btn" onClick={() => setShowDropdown(true)}>
@@ -496,7 +515,11 @@ export default function Overlay() {
                         </button>
                     </div>
                 ) : completed ? (
-                    <div className="overlay-completed">
+                    <div
+                        className="overlay-completed"
+                        onMouseEnter={() => api?.setIgnoreMouseEvents?.(false)}
+                        onMouseLeave={() => api?.setIgnoreMouseEvents?.(true)}
+                    >
                         <div className="completed-icon">✅</div>
                         <div className="completed-text">Completo!</div>
                         <div className="completed-sub">Rotação finalizada</div>

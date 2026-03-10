@@ -262,8 +262,6 @@ function createOverlayWindow() {
         overlayWindow.show();
     });
 
-    overlayWindow.setIgnoreMouseEvents(true, { forward: true });
-
     overlayWindow.loadURL(getRendererURL('overlay'));
     overlayWindow.setAlwaysOnTop(true, 'screen-saver');
     overlayWindow.setVisibleOnAllWorkspaces(true);
@@ -367,32 +365,60 @@ app.on('window-all-closed', () => {
 const keycodeToChar = {};
 
 function setupUiohook() {
-    // Map uIOhook codes to simple strings
-    for (const [keyName, code] of Object.entries(UiohookKey)) {
-        if (keyName.length === 1) {
-            keycodeToChar[code] = keyName.toLowerCase();
-        } else if (keyName === 'Escape') keycodeToChar[code] = 'escape';
-        else if (keyName === 'Space') keycodeToChar[code] = 'space';
-    }
+    // Mapeamento completo: letras, números, F-keys, especiais
+    const manualMap = {
+        [UiohookKey.A]: 'a', [UiohookKey.B]: 'b', [UiohookKey.C]: 'c',
+        [UiohookKey.D]: 'd', [UiohookKey.E]: 'e', [UiohookKey.F]: 'f',
+        [UiohookKey.G]: 'g', [UiohookKey.H]: 'h', [UiohookKey.I]: 'i',
+        [UiohookKey.J]: 'j', [UiohookKey.K]: 'k', [UiohookKey.L]: 'l',
+        [UiohookKey.M]: 'm', [UiohookKey.N]: 'n', [UiohookKey.O]: 'o',
+        [UiohookKey.P]: 'p', [UiohookKey.Q]: 'q', [UiohookKey.R]: 'r',
+        [UiohookKey.S]: 's', [UiohookKey.T]: 't', [UiohookKey.U]: 'u',
+        [UiohookKey.V]: 'v', [UiohookKey.W]: 'w', [UiohookKey.X]: 'x',
+        [UiohookKey.Y]: 'y', [UiohookKey.Z]: 'z',
+        [UiohookKey[0]]: '0', [UiohookKey[1]]: '1', [UiohookKey[2]]: '2',
+        [UiohookKey[3]]: '3', [UiohookKey[4]]: '4', [UiohookKey[5]]: '5',
+        [UiohookKey[6]]: '6', [UiohookKey[7]]: '7', [UiohookKey[8]]: '8',
+        [UiohookKey[9]]: '9',
+        [UiohookKey.F1]: 'f1', [UiohookKey.F2]: 'f2', [UiohookKey.F3]: 'f3',
+        [UiohookKey.F4]: 'f4', [UiohookKey.F5]: 'f5', [UiohookKey.F6]: 'f6',
+        [UiohookKey.F7]: 'f7', [UiohookKey.F8]: 'f8', [UiohookKey.F9]: 'f9',
+        [UiohookKey.F10]: 'f10', [UiohookKey.F11]: 'f11', [UiohookKey.F12]: 'f12',
+        [UiohookKey.Space]: 'space',
+        [UiohookKey.Tab]: 'tab',
+        [UiohookKey.Escape]: 'escape',
+        [UiohookKey.Backspace]: 'backspace',
+        [UiohookKey.Enter]: 'enter',
+        [UiohookKey.Numpad0]: 'num0', [UiohookKey.Numpad1]: 'num1',
+        [UiohookKey.Numpad2]: 'num2', [UiohookKey.Numpad3]: 'num3',
+        [UiohookKey.Numpad4]: 'num4', [UiohookKey.Numpad5]: 'num5',
+        [UiohookKey.Numpad6]: 'num6', [UiohookKey.Numpad7]: 'num7',
+        [UiohookKey.Numpad8]: 'num8', [UiohookKey.Numpad9]: 'num9',
+    };
+    Object.assign(keycodeToChar, manualMap);
 
     try {
         uIOhook.on('keydown', (e) => {
-            if (!keybindManager.isTracking) return;
-            const baseKey = keycodeToChar[e.keycode];
-            if (!baseKey) return;
+            try {
+                if (!keybindManager.isTracking) return;
+                const baseKey = keycodeToChar[e.keycode];
+                if (!baseKey) return;
 
-            const res = [];
-            if (e.ctrlKey) res.push('ctrl');
-            if (e.shiftKey) res.push('shift');
-            if (e.altKey) res.push('alt');
-            if (e.metaKey) res.push('meta');
-            res.push(baseKey);
-            const comboStr = res.join('+');
+                const res = [];
+                if (e.ctrlKey) res.push('ctrl');
+                if (e.shiftKey) res.push('shift');
+                if (e.altKey) res.push('alt');
+                if (e.metaKey) res.push('meta');
+                res.push(baseKey);
+                const comboStr = res.join('+');
 
-            if (keybindManager.isRegistered(comboStr)) {
-                if (overlayWindow && !overlayWindow.isDestroyed()) {
-                    overlayWindow.webContents.send('key-pressed', { key: comboStr });
+                if (keybindManager.isRegistered(comboStr)) {
+                    if (overlayWindow && !overlayWindow.isDestroyed()) {
+                        overlayWindow.webContents.send('key-pressed', { key: comboStr });
+                    }
                 }
+            } catch (err) {
+                console.error('[uIOhook] keydown handler error:', err);
             }
         });
 
@@ -427,11 +453,15 @@ ipcMain.on('set-opacity', (_, val) => {
     }
 });
 ipcMain.removeAllListeners('set-window-size');
+let setWindowSizeTimeout = null;
 ipcMain.on('set-window-size', (event, width, height) => {
-    const win = BrowserWindow.fromWebContents(event.sender);
-    if (win && !win.isDestroyed()) {
-        win.setSize(Math.round(width), Math.round(height));
-    }
+    clearTimeout(setWindowSizeTimeout);
+    setWindowSizeTimeout = setTimeout(() => {
+        const win = BrowserWindow.fromWebContents(event.sender);
+        if (win && !win.isDestroyed()) {
+            win.setSize(Math.round(width), Math.round(height));
+        }
+    }, 30);
 });
 ipcMain.removeAllListeners('set-ignore-mouse-events');
 ipcMain.on('set-ignore-mouse-events', (event, ignore) => {
@@ -555,13 +585,17 @@ ipcMain.handle('get-all-icon-status', () => {
 
 // -- Keybinds --
 ipcMain.removeAllListeners('register-rotation-keys');
+let registerKeysTimeout = null;
 ipcMain.on('register-rotation-keys', (_, keyMap) => {
-    try {
-        keybindManager.unregisterAll();
-        keybindManager.registerRotationKeys(keyMap);
-    } catch (e) {
-        console.error('Error registering rotation keys:', e);
-    }
+    clearTimeout(registerKeysTimeout);
+    registerKeysTimeout = setTimeout(() => {
+        try {
+            keybindManager.unregisterAll();
+            keybindManager.registerRotationKeys(keyMap);
+        } catch (e) {
+            console.error('Error registering rotation keys:', e);
+        }
+    }, 50); // debounce 50ms
 });
 
 ipcMain.removeAllListeners('unregister-all-keys');
