@@ -1,0 +1,153 @@
+/* RS3 Global Styles */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+/* Scrollbar global */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+
+/* Transições globais */
+button,
+input,
+select {
+    transition: all 150ms ease;
+}
+
+/* Tipografia */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-title);
+}
+
+/* Inputs base */
+input,
+select,
+textarea {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-normal);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--gold);
+}
+
+/* Botão base */
+button {
+    font-family: var(--font-body);
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+/* Links */
+a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+/* Animações globais */
+@keyframes pulse-gold {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes flash-success {
+    0% {
+        background: rgba(34, 197, 94, 0.25);
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+@keyframes flash-error {
+    0% {
+        background: rgba(239, 68, 68, 0.25);
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+@keyframes blink-text {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}

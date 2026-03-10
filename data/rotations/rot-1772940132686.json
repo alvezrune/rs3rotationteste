@@ -1,0 +1,104 @@
+{
+  "id": "rot-1772940132686",
+  "name": "saaaasd",
+  "style": "necro",
+  "bossGroup": "",
+  "phases": [
+    {
+      "id": "p1",
+      "name": "P1",
+      "steps": [
+        {
+          "skills": [
+            {
+              "id": "soulsap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "volleyofsouls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "invokedeath"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath"
+            }
+          ],
+          "note": "",
+          "passive": false
+        }
+      ]
+    }
+  ]
+}

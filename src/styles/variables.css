@@ -1,0 +1,62 @@
+/* RS3 Design System — Variáveis Globais */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Fundos */
+  --bg-primary:     #08090f;
+  --bg-secondary:   #0d1019;
+  --bg-tertiary:    #121520;
+  --bg-elevated:    #171b27;
+  --bg-hover:       rgba(255,255,255,0.04);
+
+  /* Bordas */
+  --border-subtle:  rgba(255,255,255,0.05);
+  --border-normal:  rgba(255,255,255,0.09);
+  --border-active:  rgba(255,255,255,0.16);
+  --border-gold:    rgba(200,168,75,0.35);
+  --border-gold-bright: rgba(200,168,75,0.7);
+
+  /* Dourado RS3 */
+  --gold:           #C8A84B;
+  --gold-light:     #E8C96A;
+  --gold-dim:       rgba(200,168,75,0.15);
+
+  /* Texto */
+  --text-primary:   #E8EAF0;
+  --text-secondary: #8892A4;
+  --text-muted:     #4A5568;
+
+  /* Estilos de combate */
+  --necro:          #A855F7;
+  --necro-dim:      rgba(168,85,247,0.12);
+  --melee:          #F97316;
+  --melee-dim:      rgba(249,115,22,0.12);
+  --ranged:         #22C55E;
+  --ranged-dim:     rgba(34,197,94,0.12);
+  --magic:          #22D3EE;
+  --magic-dim:      rgba(34,211,238,0.12);
+  --util:           #64748B;
+  --util-dim:       rgba(100,116,139,0.12);
+
+  /* Fases */
+  --phase-pre:      #64748B;
+  --phase-p1:       #22D3EE;
+  --phase-p2:       #A855F7;
+  --phase-p3:       #F59E0B;
+  --phase-p4:       #EF4444;
+
+  /* Estados */
+  --success:        #22C55E;
+  --error:          #EF4444;
+  --warning:        #F59E0B;
+
+  /* Efeitos */
+  --shadow-window:  0 0 60px rgba(0,0,0,0.9), 
+                    0 0 0 1px rgba(200,168,75,0.2);
+  --shadow-card:    0 2px 12px rgba(0,0,0,0.4);
+  --blur-bg:        blur(16px);
+
+  /* Fontes */
+  --font-title:     'Cinzel', serif;
+  --font-body:      'Rajdhani', sans-serif;
+}

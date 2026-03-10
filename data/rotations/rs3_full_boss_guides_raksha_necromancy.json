@@ -1,0 +1,1036 @@
+{
+  "id": "rs3_full_boss_guides_raksha_necromancy",
+  "name": "Raksha - Necromancy",
+  "style": "Necromancy",
+  "bossGroup": "Raksha",
+  "phases": [
+    {
+      "id": "default",
+      "name": "Rotação",
+      "steps": [
+        {
+          "skills": [
+            {
+              "id": "residualsoul",
+              "name": "Residual Soul",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Residual Soul"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necrosis",
+              "name": "Necrosis",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necrosis"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "warsretreatteleport",
+              "name": "Warsretreatteleport",
+              "defaultKey": "r",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Warsretreatteleport"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "conjurearmy",
+              "name": "Conjure Undead Army",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Conjure Undead Army"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "lifetransfer",
+              "name": "Life Transfer",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Life Transfer"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandghost",
+              "name": "Commandghost",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Commandghost"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "surge",
+              "name": "Surge",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Surge"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "invokedeath",
+              "name": "Invoke Death",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Invoke Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandskeleton",
+              "name": "Command Skeleton Warrior",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#10B981",
+              "wikiName": "Command Skeleton Warrior"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "splitsoul",
+              "name": "Splitsoul",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Splitsoul"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "vulnbomb",
+              "name": "Vulnerability bomb",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Vulnerability bomb"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "raksha",
+              "name": "Raksha",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Raksha"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "bloat",
+              "name": "Bloat",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Bloat"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls",
+              "name": "Death Skulls",
+              "defaultKey": "5",
+              "type": "ultimate",
+              "color": "#8B5CF6",
+              "wikiName": "Death Skulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "volleyofsouls",
+              "name": "Volley of Souls",
+              "defaultKey": "3",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Volley of Souls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "r",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "divert",
+              "name": "Divert",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Divert"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath",
+              "name": "Touch of Death",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Touch of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandskeleton",
+              "name": "Command Skeleton Warrior",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#10B981",
+              "wikiName": "Command Skeleton Warrior"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "livingdeath",
+              "name": "Living Death",
+              "defaultKey": "6",
+              "type": "ultimate",
+              "color": "#6B7280",
+              "wikiName": "Living Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "adrenrenewal",
+              "name": "Adrenaline renewal",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Adrenaline renewal"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath",
+              "name": "Touch of Death",
+              "defaultKey": "r",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Touch of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls",
+              "name": "Death Skulls",
+              "defaultKey": "r",
+              "type": "ultimate",
+              "color": "#8B5CF6",
+              "wikiName": "Death Skulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "q",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath",
+              "name": "Finger of Death",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Finger of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath",
+              "name": "Finger of Death",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Finger of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "q",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls",
+              "name": "Death Skulls",
+              "defaultKey": "q",
+              "type": "ultimate",
+              "color": "#8B5CF6",
+              "wikiName": "Death Skulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath",
+              "name": "Touch of Death",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Touch of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath",
+              "name": "Finger of Death",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Finger of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath",
+              "name": "Finger of Death",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Finger of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls",
+              "name": "Death Skulls",
+              "defaultKey": "1",
+              "type": "ultimate",
+              "color": "#8B5CF6",
+              "wikiName": "Death Skulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "bloat",
+              "name": "Bloat",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Bloat"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "volleyofsouls",
+              "name": "Volley of Souls",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Volley of Souls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "threadsoffate",
+              "name": "Threads of Fate",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#10B981",
+              "wikiName": "Threads of Fate"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "raksha",
+              "name": "Raksha",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Raksha"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "volleyofsouls",
+              "name": "Volley of Souls",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Volley of Souls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "anti",
+              "name": "Anticipation",
+              "defaultKey": "5",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Anticipation"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "3",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath",
+              "name": "Touch of Death",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Touch of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "excal",
+              "name": "Enhanced Excalibur",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Enhanced Excalibur"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulboundlantern",
+              "name": "Soulbound Lantern Special",
+              "defaultKey": "q",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soulbound Lantern Special"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "conjurearmy",
+              "name": "Conjure Undead Army",
+              "defaultKey": "2",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Conjure Undead Army"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandskeleton",
+              "name": "Command Skeleton Warrior",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#10B981",
+              "wikiName": "Command Skeleton Warrior"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandghost",
+              "name": "Commandghost",
+              "defaultKey": "3",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Commandghost"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathskulls",
+              "name": "Death Skulls",
+              "defaultKey": "5",
+              "type": "ultimate",
+              "color": "#8B5CF6",
+              "wikiName": "Death Skulls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "ingen",
+              "name": "Ingen",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Ingen"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "roarofawakening",
+              "name": "Roarofawakening",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Roarofawakening"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "odetodeceit",
+              "name": "Odetodeceit",
+              "defaultKey": "q",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Odetodeceit"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "spec",
+              "name": "Special Attack",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Special Attack"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "divert",
+              "name": "Divert",
+              "defaultKey": "r",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Divert"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "splitsoul",
+              "name": "Splitsoul",
+              "defaultKey": "4",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Splitsoul"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "bloat",
+              "name": "Bloat",
+              "defaultKey": "q",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Bloat"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "omniguard",
+              "name": "Omniguard Special",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#38BDF8",
+              "wikiName": "Omniguard Special"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "spec",
+              "name": "Special Attack",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Special Attack"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "necroauto",
+              "name": "Necromancy",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Necromancy"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "soulsap",
+              "name": "Soul Sap",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Soul Sap"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "commandskeleton",
+              "name": "Command Skeleton Warrior",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#10B981",
+              "wikiName": "Command Skeleton Warrior"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "volleyofsouls",
+              "name": "Volley of Souls",
+              "defaultKey": "e",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Volley of Souls"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "touchofdeath",
+              "name": "Touch of Death",
+              "defaultKey": "w",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Touch of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "fingerofdeath",
+              "name": "Finger of Death",
+              "defaultKey": "r",
+              "type": "ability",
+              "color": "#8B5CF6",
+              "wikiName": "Finger of Death"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "deathguard90",
+              "name": "Death Guard Special",
+              "defaultKey": "1",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Death Guard Special"
+            }
+          ],
+          "note": "",
+          "passive": false
+        },
+        {
+          "skills": [
+            {
+              "id": "eofspec",
+              "name": "Essence of Finality Special",
+              "defaultKey": "6",
+              "type": "ability",
+              "color": "#6B7280",
+              "wikiName": "Essence of Finality Special"
+            }
+          ],
+          "note": "",
+          "passive": false
+        }
+      ]
+    }
+  ]
+}

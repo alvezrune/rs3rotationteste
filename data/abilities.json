@@ -1,0 +1,1316 @@
+{
+    "soulsap": {
+        "id": "soulsap",
+        "name": "Soul Sap",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "necroauto": {
+        "id": "necroauto",
+        "name": "Necromancy Auto",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "touchofdeath": {
+        "id": "touchofdeath",
+        "name": "Touch of Death",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deathskulls": {
+        "id": "deathskulls",
+        "name": "Death Skulls",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "fingerofdeath": {
+        "id": "fingerofdeath",
+        "name": "Finger of Death",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "volleyofsouls": {
+        "id": "volleyofsouls",
+        "name": "Volley of Souls",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bloat": {
+        "id": "bloat",
+        "name": "Bloat",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "spectralscythe": {
+        "id": "spectralscythe",
+        "name": "Spectral Scythe",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "soulstrike": {
+        "id": "soulstrike",
+        "name": "Soul Strike",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "splitsoul": {
+        "id": "splitsoul",
+        "name": "Split Soul",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "livingdeath": {
+        "id": "livingdeath",
+        "name": "Living Death",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "threadsoffate": {
+        "id": "threadsoffate",
+        "name": "Threads of Fate",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "invokedeath": {
+        "id": "invokedeath",
+        "name": "Invoke Death",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "darkness": {
+        "id": "darkness",
+        "name": "Darkness",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "lifetransfer": {
+        "id": "lifetransfer",
+        "name": "Life Transfer",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "conjurearmy": {
+        "id": "conjurearmy",
+        "name": "Conjure Undead Army",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "conjureskeletonwarrior": {
+        "id": "conjureskeletonwarrior",
+        "name": "Conjure Skeleton Warrior",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "conjurevengeflghost": {
+        "id": "conjurevengeflghost",
+        "name": "Conjure Vengeful Ghost",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "conjureputridzombie": {
+        "id": "conjureputridzombie",
+        "name": "Conjure Putrid Zombie",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "commandskeletonwarrior": {
+        "id": "commandskeletonwarrior",
+        "name": "Command Skeleton Warrior",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "commandvengeflghost": {
+        "id": "commandvengeflghost",
+        "name": "Command Vengeful Ghost",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "commandputridzombie": {
+        "id": "commandputridzombie",
+        "name": "Command Putrid Zombie",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "omniguardspec": {
+        "id": "omniguardspec",
+        "name": "Omni Guard Spec",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deathguardspec": {
+        "id": "deathguardspec",
+        "name": "Death Guard Spec",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "soulboundlanternspec": {
+        "id": "soulboundlanternspec",
+        "name": "Soulbound Lantern Spec",
+        "style": "necro",
+        "category": "Necromancy",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "slice": {
+        "id": "slice",
+        "name": "Slice",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "meleeauto": {
+        "id": "meleeauto",
+        "name": "Melee Auto",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "slap": {
+        "id": "slap",
+        "name": "Slap",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "punish": {
+        "id": "punish",
+        "name": "Punish",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "havoc": {
+        "id": "havoc",
+        "name": "Havoc",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "cleave": {
+        "id": "cleave",
+        "name": "Cleave",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "sever": {
+        "id": "sever",
+        "name": "Sever",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "hurricane": {
+        "id": "hurricane",
+        "name": "Hurricane",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "massacre": {
+        "id": "massacre",
+        "name": "Massacre",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "assault": {
+        "id": "assault",
+        "name": "Assault",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "destroy": {
+        "id": "destroy",
+        "name": "Destroy",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greaterflurry": {
+        "id": "greaterflurry",
+        "name": "Greater Flurry",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "barge": {
+        "id": "barge",
+        "name": "Barge",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greaterbarge": {
+        "id": "greaterbarge",
+        "name": "Greater Barge",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bladeddive": {
+        "id": "bladeddive",
+        "name": "Bladed Dive",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "decimate": {
+        "id": "decimate",
+        "name": "Decimate",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "dismember": {
+        "id": "dismember",
+        "name": "Dismember",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "overpower": {
+        "id": "overpower",
+        "name": "Overpower",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "quake": {
+        "id": "quake",
+        "name": "Quake",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "pulverise": {
+        "id": "pulverise",
+        "name": "Pulverise",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "meteorstrike": {
+        "id": "meteorstrike",
+        "name": "Meteor Strike",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "chaosroar": {
+        "id": "chaosroar",
+        "name": "Chaos Roar",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bloodtendrils": {
+        "id": "bloodtendrils",
+        "name": "Blood Tendrils",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "forcefulbackhand": {
+        "id": "forcefulbackhand",
+        "name": "Forceful Backhand",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "stomp": {
+        "id": "stomp",
+        "name": "Stomp",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "backhand": {
+        "id": "backhand",
+        "name": "Backhand",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "kick": {
+        "id": "kick",
+        "name": "Kick",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "smash": {
+        "id": "smash",
+        "name": "Smash",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "dragontooth": {
+        "id": "dragontooth",
+        "name": "Dragon Tooth",
+        "style": "melee",
+        "category": "Melee",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "needlestrike": {
+        "id": "needlestrike",
+        "name": "Needle Strike",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "rangedauto": {
+        "id": "rangedauto",
+        "name": "Ranged Auto",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "dazingshot": {
+        "id": "dazingshot",
+        "name": "Dazing Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bindingshot": {
+        "id": "bindingshot",
+        "name": "Binding Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "tightbindings": {
+        "id": "tightbindings",
+        "name": "Tight Bindings",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "fragmentationshot": {
+        "id": "fragmentationshot",
+        "name": "Fragmentation Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "piercingshot": {
+        "id": "piercingshot",
+        "name": "Piercing Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "ricochet": {
+        "id": "ricochet",
+        "name": "Ricochet",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greaterricochet": {
+        "id": "greaterricochet",
+        "name": "Greater Ricochet",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "snapshot": {
+        "id": "snapshot",
+        "name": "Snap Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "rapidfire": {
+        "id": "rapidfire",
+        "name": "Rapid Fire",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bombardment": {
+        "id": "bombardment",
+        "name": "Bombardment",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "incendiaryshot": {
+        "id": "incendiaryshot",
+        "name": "Incendiary Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deathsswiftness": {
+        "id": "deathsswiftness",
+        "name": "Death's Swiftness",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "unload": {
+        "id": "unload",
+        "name": "Unload",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "corruptionshot": {
+        "id": "corruptionshot",
+        "name": "Corruption Shot",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "shadowtendrils": {
+        "id": "shadowtendrils",
+        "name": "Shadow Tendrils",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "shadowtend": {
+        "id": "shadowtend",
+        "name": "Shadow Tend",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "darkbowspec": {
+        "id": "darkbowspec",
+        "name": "Dark Bow Spec",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "decimationspec": {
+        "id": "decimationspec",
+        "name": "Decimation Spec",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "serengodbowspec": {
+        "id": "serengodbowspec",
+        "name": "Seren Godbow Spec",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bolgspec": {
+        "id": "bolgspec",
+        "name": "Bolg Spec",
+        "style": "ranged",
+        "category": "Ranged",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "sonicwave": {
+        "id": "sonicwave",
+        "name": "Sonic Wave",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "magicauto": {
+        "id": "magicauto",
+        "name": "Magic Auto",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "concentratedblast": {
+        "id": "concentratedblast",
+        "name": "Concentrated Blast",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "dragonbreath": {
+        "id": "dragonbreath",
+        "name": "Dragon Breath",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "chain": {
+        "id": "chain",
+        "name": "Chain",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greaterchain": {
+        "id": "greaterchain",
+        "name": "Greater Chain",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "combust": {
+        "id": "combust",
+        "name": "Combust",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "corruptionblast": {
+        "id": "corruptionblast",
+        "name": "Corruption Blast",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "impact": {
+        "id": "impact",
+        "name": "Impact",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deepimpact": {
+        "id": "deepimpact",
+        "name": "Deep Impact",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "wrack": {
+        "id": "wrack",
+        "name": "Wrack",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greaterwrack": {
+        "id": "greaterwrack",
+        "name": "Greater Wrack",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "asphyxiate": {
+        "id": "asphyxiate",
+        "name": "Asphyxiate",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "detonate": {
+        "id": "detonate",
+        "name": "Detonate",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "wildmagic": {
+        "id": "wildmagic",
+        "name": "Wild Magic",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "tsunami": {
+        "id": "tsunami",
+        "name": "Tsunami",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "greatertsunami": {
+        "id": "greatertsunami",
+        "name": "Greater Tsunami",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "omnipower": {
+        "id": "omnipower",
+        "name": "Omnipower",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "incitedfear": {
+        "id": "incitedfear",
+        "name": "Incited Fear",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "glacialembrace": {
+        "id": "glacialembrace",
+        "name": "Glacial Embrace",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "fracturedstaffspec": {
+        "id": "fracturedstaffspec",
+        "name": "Fractured Staff Spec",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "staffofsliskespec": {
+        "id": "staffofsliskespec",
+        "name": "Staff of Sliske Spec",
+        "style": "magic",
+        "category": "Magic",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "anticipate": {
+        "id": "anticipate",
+        "name": "Anticipate",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "freedom": {
+        "id": "freedom",
+        "name": "Freedom",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "resonance": {
+        "id": "resonance",
+        "name": "Resonance",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "reflect": {
+        "id": "reflect",
+        "name": "Reflect",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "debilitate": {
+        "id": "debilitate",
+        "name": "Debilitate",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "devotion": {
+        "id": "devotion",
+        "name": "Devotion",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "divert": {
+        "id": "divert",
+        "name": "Divert",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "immortality": {
+        "id": "immortality",
+        "name": "Immortality",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "barricade": {
+        "id": "barricade",
+        "name": "Barricade",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "provoke": {
+        "id": "provoke",
+        "name": "Provoke",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "siphon": {
+        "id": "siphon",
+        "name": "Siphon",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "naturalinstinct": {
+        "id": "naturalinstinct",
+        "name": "Natural Instinct",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "disruptionshield": {
+        "id": "disruptionshield",
+        "name": "Disruption Shield",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "enhancedexcalibur": {
+        "id": "enhancedexcalibur",
+        "name": "Enhanced Excalibur",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "sgspec": {
+        "id": "sgspec",
+        "name": "SG Spec",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bgspec": {
+        "id": "bgspec",
+        "name": "BG Spec",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "adrenpotion": {
+        "id": "adrenpotion",
+        "name": "Adrenaline Potion",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "superadrenpotion": {
+        "id": "superadrenpotion",
+        "name": "Super Adrenaline Potion",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "limitless": {
+        "id": "limitless",
+        "name": "Limitless",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "ingen": {
+        "id": "ingen",
+        "name": "Ingen",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "vulnbomb": {
+        "id": "vulnbomb",
+        "name": "Vulnerability Bomb",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "stickybomb": {
+        "id": "stickybomb",
+        "name": "Sticky Bomb",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "powerburstofvitality": {
+        "id": "powerburstofvitality",
+        "name": "Powerburst of Vitality",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "powerburstofaccel": {
+        "id": "powerburstofaccel",
+        "name": "Powerburst of Acceleration",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deflectmelee": {
+        "id": "deflectmelee",
+        "name": "Deflect Melee",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deflectmagic": {
+        "id": "deflectmagic",
+        "name": "Deflect Magic",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deflectranged": {
+        "id": "deflectranged",
+        "name": "Deflect Ranged",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "deflectnecromancy": {
+        "id": "deflectnecromancy",
+        "name": "Deflect Necromancy",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "turmoil": {
+        "id": "turmoil",
+        "name": "Turmoil",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "anguish": {
+        "id": "anguish",
+        "name": "Anguish",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "torment": {
+        "id": "torment",
+        "name": "Torment",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "affliction": {
+        "id": "affliction",
+        "name": "Affliction",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "sorrow": {
+        "id": "sorrow",
+        "name": "Sorrow",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "malevolence": {
+        "id": "malevolence",
+        "name": "Malevolence",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "desolation": {
+        "id": "desolation",
+        "name": "Desolation",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "berserker": {
+        "id": "berserker",
+        "name": "Berserker",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "ripperscroll": {
+        "id": "ripperscroll",
+        "name": "Ripper Scroll",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "kalgerionscroll": {
+        "id": "kalgerionscroll",
+        "name": "Kalgerion Scroll",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "spiritualprayer": {
+        "id": "spiritualprayer",
+        "name": "Spiritual Prayer",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "basicattack": {
+        "id": "basicattack",
+        "name": "Basic Attack",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": true,
+        "cooldown": 0
+    },
+    "surge": {
+        "id": "surge",
+        "name": "Surge",
+        "style": "util",
+        "category": "Utilitárias",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "preparation": {
+        "id": "preparation",
+        "name": "Preparation",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "revenge": {
+        "id": "revenge",
+        "name": "Revenge",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "rejuvenate": {
+        "id": "rejuvenate",
+        "name": "Rejuvenate",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "bash": {
+        "id": "bash",
+        "name": "Bash",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "naturalreserve": {
+        "id": "naturalreserve",
+        "name": "Natural Reserve",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "sacrifice": {
+        "id": "sacrifice",
+        "name": "Sacrifice",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    },
+    "transfigure": {
+        "id": "transfigure",
+        "name": "Transfigure",
+        "style": "defensives",
+        "category": "Defensivas",
+        "defaultKey": "",
+        "isPassive": false,
+        "cooldown": 0
+    }
+}
