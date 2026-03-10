@@ -44,8 +44,15 @@
       "output": "dist-release"
     },
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "RS3 Rotation"
     },
     "files": [
       "dist-vite/**/*",
