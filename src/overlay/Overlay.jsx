@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import lodash from 'lodash';
 import AbilitySlot from './AbilitySlot';
 import GCDBar from './GCDBar';
 import PhaseBadge from '../components/PhaseBadge';
@@ -46,6 +45,10 @@ export default function Overlay() {
     const handleKeyPressRef = useRef(null);
     const updateViewRef = useRef(null);
     const checkAutoAdvanceRef = useRef(null);
+    const lastKeyPressRef = useRef(0);
+    const gcdTimeoutRef = useRef(null);
+    const mouseLeaveTimeoutRef = useRef(null);
+    const iconCacheRef = useRef({});
 
     // Latest-value refs for use inside callbacks (avoids stale closures)
     const abilitiesRef = useRef(abilities);
@@ -70,7 +73,8 @@ export default function Overlay() {
         });
         gcd.onComplete(() => {
             setGcdState('complete');
-            setTimeout(() => {
+            if (gcdTimeoutRef.current) clearTimeout(gcdTimeoutRef.current);
+            gcdTimeoutRef.current = setTimeout(() => {
                 setGcdState(current => current === 'complete' ? 'idle' : current);
             }, 300);
             setGcdProgress(0);
@@ -88,6 +92,8 @@ export default function Overlay() {
             gcd.removeAllListeners();
             if (passiveTimerRef.current) clearTimeout(passiveTimerRef.current);
             if (errorTimeoutRef.current) clearTimeout(errorTimeoutRef.current);
+            if (gcdTimeoutRef.current) clearTimeout(gcdTimeoutRef.current);
+            if (mouseLeaveTimeoutRef.current) clearTimeout(mouseLeaveTimeoutRef.current);
         };
     }, []);
 
@@ -133,6 +139,7 @@ export default function Overlay() {
             api.onSettingsChanged((data) => setSettings(data)),
             api.onAbilitiesChanged((data) => {
                 setAbilities(data);
+                iconCacheRef.current = {}; // Sync
                 setIconCache({}); // Invalidate icon cache
             }),
             api.onRotationsChanged((data) => setRotations(data)),
@@ -149,68 +156,73 @@ export default function Overlay() {
         return cleanup;
     }, []);
 
+    // ========== REAL-TIME KEYBINDS SYNC ==========
+    useEffect(() => {
+        if (isTracking && engineRef.current) {
+            registerKeysInternal(engineRef.current, abilities);
+        }
+    }, [abilities, isTracking]);
+
     // ========== ICON RESOLVER ==========
     const resolveIcon = useCallback((abilityId) => {
         if (!abilityId) return;
 
-        // 1. Check if we need to fetch, avoiding setState if it's already there
-        let needsFetch = false;
-        setIconCache(prev => {
-            if (prev[abilityId] !== undefined) return prev; // já em cache
-            if (iconLoadingRef.current.has(abilityId)) return prev; // sendo carregado agora
+        // 1. Sync evaluation (Instant, outside React state)
+        if (iconCacheRef.current[abilityId] !== undefined) return;
+        if (iconLoadingRef.current.has(abilityId)) return;
 
-            needsFetch = true;
-            iconLoadingRef.current.add(abilityId);
-            return { ...prev, [abilityId]: null }; // Seta como nulo no react dom (mostrando bolinha de loading)
+        iconLoadingRef.current.add(abilityId);
+        iconCacheRef.current[abilityId] = null; // Save placeholder sync
+        setIconCache(c => ({ ...c, [abilityId]: null }));
+
+        // 2. Async fetch
+        api.getIconPath(abilityId).then(url => {
+            iconLoadingRef.current.delete(abilityId);
+            iconCacheRef.current[abilityId] = url; // Save URL sync
+            setIconCache(c => c[abilityId] === url ? c : { ...c, [abilityId]: url });
+        }).catch(() => {
+            iconLoadingRef.current.delete(abilityId);
         });
-
-        // 2. ONLY do the fetch if the sync evaluation says we should. (Side Effects fora do State Updater!)
-        if (needsFetch) {
-            api.getIconPath(abilityId).then(url => {
-                iconLoadingRef.current.delete(abilityId);
-                setIconCache(c => {
-                    if (c[abilityId] === url) return c; // Evita loop caso não mude
-                    return { ...c, [abilityId]: url };
-                });
-            }).catch(() => {
-                iconLoadingRef.current.delete(abilityId);
-            });
-        }
     }, []);
 
     const preloadIcons = useCallback((steps) => {
         if (!steps) return;
         const allSkills = steps.flatMap(s => s?.skills || []);
 
-        // 1. Identify which ones need fetching entirely synchronously 
+        // 1. Identify synchronously
         const fetchIds = [];
-
-        setIconCache(prev => {
-            const newIds = allSkills.map(s => s.id).filter(id => id && prev[id] === undefined && !iconLoadingRef.current.has(id));
-            if (newIds.length === 0) return prev;
-
-            const next = { ...prev };
-            newIds.forEach(id => {
-                next[id] = null; // Seta slot null pro componente vazio sumonar o Placeholder
-                iconLoadingRef.current.add(id);
-                fetchIds.push(id);
-            });
-            return next; // Roda setState apenas 1 vez (não em O(n) looping)
+        allSkills.forEach(s => {
+            if (s.id && iconCacheRef.current[s.id] === undefined && !iconLoadingRef.current.has(s.id)) {
+                iconLoadingRef.current.add(s.id);
+                iconCacheRef.current[s.id] = null;
+                fetchIds.push(s.id);
+            }
         });
 
-        // 2. Perform IO fetches Outside setState purely based on the batch collected
-        fetchIds.forEach(id => {
-            api.getIconPath(id).then(url => {
-                iconLoadingRef.current.delete(id);
-                setIconCache(c => c[id] === url ? c : { ...c, [id]: url });
-            }).catch(() => {
-                iconLoadingRef.current.delete(id);
+        if (fetchIds.length > 0) {
+            // Update react domain just once
+            setIconCache(c => {
+                const n = { ...c };
+                fetchIds.forEach(id => n[id] = null);
+                return n;
             });
-        });
+
+            // 2. Perform IO fetches Outside setState
+            fetchIds.forEach(id => {
+                api.getIconPath(id).then(url => {
+                    iconLoadingRef.current.delete(id);
+                    iconCacheRef.current[id] = url;
+                    setIconCache(c => c[id] === url ? c : { ...c, [id]: url });
+                }).catch(() => {
+                    iconLoadingRef.current.delete(id);
+                });
+            });
+        }
     }, []);
 
     // ========== LÓGICA DO MOUSE (Hover Depth Fix) ==========
     const handleMouseEnter = useCallback(() => {
+        if (mouseLeaveTimeoutRef.current) clearTimeout(mouseLeaveTimeoutRef.current);
         mouseDepthRef.current += 1;
         if (mouseDepthRef.current === 1) {
             api?.setIgnoreMouseEvents?.(false);
@@ -220,7 +232,11 @@ export default function Overlay() {
     const handleMouseLeave = useCallback(() => {
         mouseDepthRef.current = Math.max(0, mouseDepthRef.current - 1);
         if (mouseDepthRef.current === 0) {
-            api?.setIgnoreMouseEvents?.(true);
+            // Buffer time to allow window drag start without closing events
+            if (mouseLeaveTimeoutRef.current) clearTimeout(mouseLeaveTimeoutRef.current);
+            mouseLeaveTimeoutRef.current = setTimeout(() => {
+                api?.setIgnoreMouseEvents?.(true);
+            }, 400);
         }
     }, []);
 
@@ -329,8 +345,12 @@ export default function Overlay() {
         api.registerRotationKeys(keyMap);
     }
 
-    const handleKeyPressInternal = useCallback(lodash.throttle((key) => {
+    const handleKeyPressInternal = useCallback((key) => {
         try {
+            const now = Date.now();
+            if (now - lastKeyPressRef.current < 150) return; // Anti-spam nativo
+            lastKeyPressRef.current = now;
+
             const engine = engineRef.current;
             const gcd = gcdRef.current;
             if (!engine || !gcd) return;
@@ -401,7 +421,7 @@ export default function Overlay() {
         } catch (err) {
             console.error('[React] Error in key handler:', err);
         }
-    }, 150, { trailing: false }), []); // throttle key presses heavily to avoid flicker/crash loops
+    }, []);
 
     useEffect(() => {
         handleKeyPressRef.current = handleKeyPressInternal;
@@ -420,10 +440,15 @@ export default function Overlay() {
 
         engine.resetAll();
         gcd.reset();
-        if (passiveTimerRef.current) {
-            clearTimeout(passiveTimerRef.current);
-            passiveTimerRef.current = null;
-        }
+
+        if (passiveTimerRef.current) clearTimeout(passiveTimerRef.current);
+        passiveTimerRef.current = null;
+        if (errorTimeoutRef.current) clearTimeout(errorTimeoutRef.current);
+        errorTimeoutRef.current = null;
+        if (gcdTimeoutRef.current) clearTimeout(gcdTimeoutRef.current);
+        gcdTimeoutRef.current = null;
+
+        preInputRef.current = null;
         setCompleted(false);
         completedRef.current = false;
         setGcdState('idle');

@@ -512,6 +512,14 @@ ipcMain.handle('save-settings', (_, data) => {
     // Notify overlay of settings changes
     if (overlayWindow && !overlayWindow.isDestroyed()) {
         overlayWindow.webContents.send('settings-changed', data);
+        if (data.overlay) {
+            if (data.overlay.opacity != null) {
+                overlayWindow.setOpacity(Number(data.overlay.opacity));
+            }
+            if (data.overlay.width && data.overlay.height) {
+                overlayWindow.setSize(Math.round(data.overlay.width), Math.round(data.overlay.height));
+            }
+        }
     }
     return true;
 });
